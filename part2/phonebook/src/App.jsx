@@ -13,7 +13,9 @@ const App = () => {
   const filteredList =
     filteredName === ""
       ? persons
-      : persons.filter((person) => person.name.startsWith(filteredName));
+      : persons.filter((person) =>
+          person.name.toUpperCase().startsWith(filteredName.toUpperCase())
+        );
 
   const handleNameChange = (event) => {
     setNewName(event.target.value);
