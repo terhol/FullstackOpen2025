@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Filter from "./components/Filter";
+import AddPerson from "./components/AddPerson";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -17,68 +19,18 @@ const App = () => {
           person.name.toUpperCase().startsWith(filteredName.toUpperCase())
         );
 
-  const handleNameChange = (event) => {
-    setNewName(event.target.value);
-  };
-
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value);
-  };
-
-  const handleFilteredNameChange = (event) => {
-    setFilteredName(event.target.value);
-  };
-
-  const handleAddName = (event) => {
-    event.preventDefault();
-    if (persons.map((person) => person.name).includes(newName)) {
-      window.alert(`${newName} is already added to phonebook.`);
-    } else {
-      const changedName = {
-        name: newName,
-        number: newNumber,
-      };
-      setPersons(persons.concat(changedName));
-      setNewName("");
-      setNewNumber("");
-    }
-  };
-
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-        Filter name with:{" "}
-        <input
-          value={filteredName}
-          placeholder={"Start writing name"}
-          onChange={handleFilteredNameChange}
-        />
-      </div>
-      <h2>Add new person</h2>
-      <form onSubmit={handleAddName}>
-        <div>
-          Name:{" "}
-          <input
-            value={newName}
-            placeholder={"Name"}
-            onChange={handleNameChange}
-          />
-        </div>
-        <div>
-          Phone number:{" "}
-          <input
-            value={newNumber}
-            placeholder={"Phone number"}
-            onChange={handleNumberChange}
-          />
-        </div>
-        <div>
-          <button onChange={handleNameChange} type="submit">
-            Add
-          </button>
-        </div>
-      </form>
+      <Filter filteredName={filteredName} setFilteredName={setFilteredName} />
+      <AddPerson
+        newName={newName}
+        setNewName={setNewName}
+        newNumber={newNumber}
+        setNewNumber={setNewNumber}
+        persons={persons}
+        setPersons={setPersons}
+      />
       <h2>Numbers</h2>
       <ul>
         {filteredList.map((person) => (
