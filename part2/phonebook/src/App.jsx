@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Filter from "./components/Filter";
 import AddPerson from "./components/AddPerson";
+import Numbers from "./components/Numbers";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -16,7 +17,7 @@ const App = () => {
     filteredName === ""
       ? persons
       : persons.filter((person) =>
-          person.name.toUpperCase().startsWith(filteredName.toUpperCase())
+          person.name.toUpperCase().includes(filteredName.toUpperCase())
         );
 
   return (
@@ -31,14 +32,7 @@ const App = () => {
         persons={persons}
         setPersons={setPersons}
       />
-      <h2>Numbers</h2>
-      <ul>
-        {filteredList.map((person) => (
-          <li key={person.name}>
-            {person.name}: {person.number}
-          </li>
-        ))}
-      </ul>
+      <Numbers filteredList={filteredList} />
     </div>
   );
 };
