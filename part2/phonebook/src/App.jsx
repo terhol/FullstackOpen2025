@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import AddPerson from "./components/AddPerson";
 import Numbers from "./components/Numbers";
-import axios from "axios";
-
+import personService from "./services/person";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
@@ -17,10 +16,8 @@ const App = () => {
         );
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then((response) => setPersons(response.data));
-  }, []);
+    personService.getAll().then((personInfo) => setPersons(personInfo)), [];
+  });
 
   return (
     <div>

@@ -1,3 +1,5 @@
+import personService from "../services/person";
+
 const AddPerson = ({
   setNewName,
   setNewNumber,
@@ -23,6 +25,7 @@ const AddPerson = ({
         name: newName,
         number: newNumber,
       };
+      personService.addPerson(changedName);
       setPersons(persons.concat(changedName));
       setNewName("");
       setNewNumber("");
