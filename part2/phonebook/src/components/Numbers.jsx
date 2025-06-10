@@ -10,9 +10,10 @@ const Numbers = ({ filteredList }) => {
   return (
     <div>
       <h2>Numbers</h2>
+      {console.log(filteredList)}
       <ul>
         {filteredList.map((person) => (
-          <li key={person.name}>
+          <li key={person.id}>
             <PersonInfo
               person={person}
               handleDeletePerson={() => handleDeletePerson(person)}

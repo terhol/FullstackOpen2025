@@ -19,7 +19,16 @@ const AddPerson = ({
   const handleAddName = (event) => {
     event.preventDefault();
     if (persons.map((person) => person.name).includes(newName)) {
-      window.alert(`${newName} is already added to phonebook.`);
+      if (
+        window.confirm(
+          `${newName} is already added to phonebook. Do you want to update it?`
+        )
+      ) {
+        const person = persons.find(
+          (currentPerson) => currentPerson.name === newName
+        );
+        handleUpdateName(person, newNumber);
+      }
     } else {
       const changedName = {
         name: newName,
@@ -30,6 +39,24 @@ const AddPerson = ({
       setNewName("");
       setNewNumber("");
     }
+  };
+
+  const handleUpdateName = (person, updatedNumber) => {
+    console.log(person);
+    const updatedPerson = { ...person, number: updatedNumber };
+    console.log(updatedPerson);
+    personService
+      .updatePerson(person.id, updatedPerson)
+      .then((returnedPerson) =>
+        setPersons(
+          persons.map((personInfo) => {
+            console.log(personInfo);
+            personInfo.id === updatedPerson.id ? returnedPerson : personInfo;
+          })
+        )
+      );
+    setNewName("");
+    setNewNumber("");
   };
 
   return (
