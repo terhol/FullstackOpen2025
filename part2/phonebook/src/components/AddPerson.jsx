@@ -42,19 +42,18 @@ const AddPerson = ({
   };
 
   const handleUpdateName = (person, updatedNumber) => {
-    console.log(person);
     const updatedPerson = { ...person, number: updatedNumber };
-    console.log(updatedPerson);
     personService
       .updatePerson(person.id, updatedPerson)
-      .then((returnedPerson) =>
+      .then((returnedPerson) => {
         setPersons(
           persons.map((personInfo) => {
-            console.log(personInfo);
-            personInfo.id === updatedPerson.id ? returnedPerson : personInfo;
+            return personInfo.id === updatedPerson.id
+              ? returnedPerson
+              : personInfo;
           })
-        )
-      );
+        );
+      });
     setNewName("");
     setNewNumber("");
   };

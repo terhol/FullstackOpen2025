@@ -8,17 +8,16 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filteredName, setFilteredName] = useState("");
-  const filteredList = () => {
+  const filteredList =
     filteredName === ""
       ? persons
       : persons.filter((person) =>
           person.name.toUpperCase().includes(filteredName.toUpperCase())
         );
-  };
 
   useEffect(() => {
-    personService.getAll().then((personInfo) => setPersons(personInfo)), [];
-  });
+    personService.getAll().then((personInfo) => setPersons(personInfo));
+  }, []);
 
   return (
     <div>
