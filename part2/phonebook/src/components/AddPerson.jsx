@@ -34,8 +34,9 @@ const AddPerson = ({
         name: newName,
         number: newNumber,
       };
-      personService.addPerson(changedName);
-      setPersons(persons.concat(changedName));
+      personService
+        .addPerson(changedName)
+        .then((data) => setPersons(persons.concat(data)));
       setNewName("");
       setNewNumber("");
     }
