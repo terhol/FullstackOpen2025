@@ -7,6 +7,7 @@ const AddPerson = ({
   newNumber,
   persons,
   setPersons,
+  setNotificationMessage,
 }) => {
   const handleNameChange = (event) => {
     setNewName(event.target.value);
@@ -39,6 +40,10 @@ const AddPerson = ({
         .then((data) => setPersons(persons.concat(data)));
       setNewName("");
       setNewNumber("");
+      setNotificationMessage(`${changedName.name} was added to phonebook.`);
+      setTimeout(() => {
+        setNotificationMessage(null);
+      }, 5000);
     }
   };
 
@@ -57,6 +62,10 @@ const AddPerson = ({
       });
     setNewName("");
     setNewNumber("");
+    setNotificationMessage(`${person.name}: number changed successfully.`);
+    setTimeout(() => {
+      setNotificationMessage(null);
+    }, 5000);
   };
 
   return (
