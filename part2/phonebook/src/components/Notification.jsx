@@ -13,7 +13,7 @@ const Notification = ({ message, isError }) => {
   };
 
   const notificationStyleError = {
-    color: "green",
+    color: "red",
     background: "lightGrey",
     fontSize: 20,
     borderStyle: "solid",

@@ -32,6 +32,7 @@ const App = () => {
         persons={persons}
         setPersons={setPersons}
         setNotificationMessage={setNotificationMessage}
+        setIsNotificationError={setIsNotificationError}
       />
       <Numbers
         persons={persons}

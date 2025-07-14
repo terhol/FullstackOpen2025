@@ -8,6 +8,7 @@ const AddPerson = ({
   persons,
   setPersons,
   setNotificationMessage,
+  setIsNotificationError,
 }) => {
   const handleNameChange = (event) => {
     setNewName(event.target.value);
@@ -59,7 +60,17 @@ const AddPerson = ({
               : personInfo;
           })
         );
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((error) => {
+        setIsNotificationError(true);
+        setNotificationMessage(`${person.name} was already removed.`);
+        setTimeout(() => {
+          setIsNotificationError(false);
+          setNotificationMessage(null);
+        }, 5000);
       });
+
     setNewName("");
     setNewNumber("");
     setNotificationMessage(`${person.name}: number changed successfully.`);
