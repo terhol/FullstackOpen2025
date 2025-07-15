@@ -18,6 +18,15 @@ const AddPerson = ({
     setNewNumber(event.target.value);
   };
 
+  const restartValues = (message) => {
+    setNewName("");
+    setNewNumber("");
+    setNotificationMessage(message);
+    setTimeout(() => {
+      setNotificationMessage(null);
+    }, 5000);
+  };
+
   const handleAddName = (event) => {
     event.preventDefault();
     if (persons.map((person) => person.name).includes(newName)) {
@@ -39,12 +48,7 @@ const AddPerson = ({
       personService
         .addPerson(changedName)
         .then((data) => setPersons(persons.concat(data)));
-      setNewName("");
-      setNewNumber("");
-      setNotificationMessage(`${changedName.name} was added to phonebook.`);
-      setTimeout(() => {
-        setNotificationMessage(null);
-      }, 5000);
+      restartValues(`${changedName.name} was added to phonebook.`);
     }
   };
 
@@ -71,12 +75,7 @@ const AddPerson = ({
         }, 5000);
       });
 
-    setNewName("");
-    setNewNumber("");
-    setNotificationMessage(`${person.name}: number changed successfully.`);
-    setTimeout(() => {
-      setNotificationMessage(null);
-    }, 5000);
+    restartValues(`${person.name}: number changed successfully.`);
   };
 
   return (
