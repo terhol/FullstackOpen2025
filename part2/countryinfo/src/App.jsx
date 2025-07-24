@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import countryService from "./services/country";
+import Filter from "./components/Filter";
+import CountryList from "./components/CountryList";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
+  const [filteredName, setFilteredName] = useState("");
 
   useEffect(() => {
     countryService
@@ -14,8 +17,8 @@ const App = () => {
 
   return (
     <div>
-      {console.log(countries)}
-      <div>Hello world!</div>
+      <Filter filteredName={filteredName} setFilteredName={setFilteredName} />
+      <CountryList countries={countries} filteredName={filteredName} />
     </div>
   );
 };

@@ -7,4 +7,10 @@ const getAll = async () => {
   return response.data;
 };
 
-export default { getAll };
+const getCountry = async (country) => {
+  const request = axios.get(`${baseUrl}/name/${country}`);
+  const response = await request;
+  return response.data;
+};
+
+export default { getAll, getCountry };
