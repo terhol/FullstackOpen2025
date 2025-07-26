@@ -30,6 +30,9 @@ const Country = ({ country }) => {
           ))}
         </ul>
       </div>
+      <div>
+        <img src={countryInfo.flags.svg} width={250} />
+      </div>
     </div>
   );
 };
